@@ -86,8 +86,6 @@ class CurrencyConverterService:
         return True
 
     def _get_currency_exchange_from_db(self, from_, to, amount):
-        import ipdb
-        ipdb.set_trace()
         current_currency: dict = self.redis.get(from_)
         currency_to_exchange: dict = self.redis.get(to)
         if not current_currency:
