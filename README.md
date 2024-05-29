@@ -18,13 +18,53 @@ Package                                      | Version  |
 [Pydantic][pydantic-url]                     | 2.6.1    |
 [Httpx][httpxl-url]                          | 0.26.0   |
 [Pymongo][pymongo-url]                       | 4.6.1    |
+[Redis][redis-url]                           | 5.0.3    |
 
 
-## Exemplo de uso:
+## Intuito do projeto:
 
 O produto criado foi feito como desafio proposto pela empresa Hurb.
 A ideia é poder fazer conversões de moedas, como também poder criar
 novas, deletar, atualizar e fazer conversões com moedas já utilizadas.
+
+## Casos de Uso:
+Utilizamos o <b>dolar como `moeda de lastro`</b>, logo novas moedas deveram especificar o seu valor em relação ao dolar em sua criação.
+
+### Para fazermos uma conversão:
+- Chamamos o endpoint `/api/v1/currency` com os seguintes [query-parameters](https://en.wikipedia.org/wiki/Query_string "query-parameters")
+```json
+{
+	"from": "USD",  // Dessa moeda
+    "to": "BRA",    // coverta pra essa moeda
+    "amount":100    // Esse valor
+}
+```
+
+### Para criarmos uma moeda precisamos:
+- Passar os seguintes valores no body do endpoint: `[POST]/api/v1/currency/{acronym-desejado}`
+```json
+{
+	"acronym": "string",
+	"name": "string",
+	"dolar_price_reference": 5
+    // valor com referencia ao dolar, como explicado acima.
+}
+```
+
+### Para atualizarmos uma moeda precisamos:
+- Passar os seguintes valores no body do endpoint: `[PUT] /api/v1/currency/{acronym-desejado}`
+```json
+{
+    "acronym": "new-value",
+	"updated_at": "29/05/2024, 17:10:21",
+	"name": "new-currency",
+	"dolar_price_reference": 5
+    // valor com referencia ao dolar, como explicado acima.
+}
+```
+
+### Para deletarmos uma moeda precisamos:
+- chamar o endpoint: `[DELETE] /api/v1/currency/{acronym-desejado}`
 
 
 ## Instalação:
@@ -47,7 +87,7 @@ uvicorn app.main:app
 Isso fará com que o banco de dados utilizado não seja instanciado mas possibilitando o funcionamento do projeto.
 
 
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="Hurb" width="24" /><a href="https://github.com/hurbcom/challenge-bravo">Bravo Challenge Pode ser encontrada aqui.</a>
+# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="Hurb" width="24" /><a href="https://github.com/hurbcom/challenge-bravo">O Desafio Challenge-Bravo Pode ser encontrada aqui.</a>
 
 <!-- Markdown link & img dfn's -->
 [python-image]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
@@ -59,5 +99,6 @@ Isso fará com que o banco de dados utilizado não seja instanciado mas possibil
 [pydantic-url]: https://docs.pydantic.dev/latest/
 [httpxl-url]: https://www.python-httpx.org/
 [pymongo-url]: https://www.mongodb.com/docs/drivers/pymongo/
+[redis-url]: https://github.com/redis/redis-py
 [fastapi-image]: https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi
 [coverage-image]: https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg
