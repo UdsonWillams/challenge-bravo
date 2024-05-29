@@ -133,7 +133,7 @@ def get_all_currency() -> JSONResponse:
     response_class=JSONResponse,
     status_code=status.HTTP_200_OK,
 )
-def get_currency(
+def currency_exchange(
     from_: str = Query(alias="from"),
     to: str = Query(),
     amount: float = Query(),
@@ -145,7 +145,7 @@ def get_currency(
     from_, to = from_.upper(), to.upper()
     service = CurrencyConverterService()
     try:
-        converted_value = service.get_currency(from_, to, amount)
+        converted_value = service.currency_exchange(from_, to, amount)
         return JSONResponse(
             content={"converted_value": converted_value}, status_code=status.HTTP_200_OK
         )

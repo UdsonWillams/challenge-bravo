@@ -14,7 +14,7 @@ class TestLocust(HttpUser):
         """
         testando endpoint
         """
-        endpoint = "api/v1/currency?from=USD&to=BRL&amount=100"
+        endpoint = "api/v1/currency_exchange?from=USD&to=BRL&amount=100"
         self.client.get(endpoint)
 
     @task(1)
@@ -22,7 +22,7 @@ class TestLocust(HttpUser):
         """
         testando endpoint
         """
-        endpoint = "api/v1/currency?from=USD&to=EUR&amount=100"
+        endpoint = "api/v1/currency_exchange?from=USD&to=EUR&amount=100"
         self.client.get(endpoint)
 
     @task(1)
@@ -30,7 +30,7 @@ class TestLocust(HttpUser):
         """
         testando endpoint
         """
-        endpoint = "api/v1/currency?from=BRL&to=EUR&amount=100"
+        endpoint = "api/v1/currency_exchange?from=BRL&to=EUR&amount=100"
         self.client.get(endpoint)
 
     @task(2)
@@ -38,5 +38,5 @@ class TestLocust(HttpUser):
         """
         testando endpoint
         """
-        endpoint = "api/v1/currency/get-all-currency"
+        endpoint = "api/v1/currencies"
         self.client.get(endpoint)
