@@ -111,7 +111,7 @@ def delete_currency_by_acronym(
 
 
 @router.get(
-    path="/currency/all",
+    path="/currencies",
     response_class=JSONResponse,
     status_code=status.HTTP_200_OK,
 )

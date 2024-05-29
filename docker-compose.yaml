@@ -13,6 +13,7 @@ services:
     tty: true
     depends_on:
       - database
+      - redis
 
   database:
     image: mongo

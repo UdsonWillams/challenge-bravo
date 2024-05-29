@@ -38,10 +38,6 @@ RUN apt-get -y install cron
 # Add the cron job
 RUN crontab -l | { cat; echo "0 0 * * * python /home/$USER/init_currencys_in_db.py"; } | crontab -
 
-# # Run the command on container startup
-# CMD cron
-
-# 
 RUN echo "CRONJOB FINALIZADO!"
 ################### FINISH CRON JOB
 

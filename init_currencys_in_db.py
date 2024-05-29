@@ -12,6 +12,7 @@ repository_timeout = 2000  # time in milliseconds
 repository = MongoRepository(repository_timeout)
 
 
+# Após modificações da logica do projeto, esse script só roda via cron-job.
 def init_currency_values_in_bd() -> None:
     awesome_service = AwesomeApiService()
     try:
