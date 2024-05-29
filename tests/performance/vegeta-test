@@ -1,0 +1,1 @@
+echo "GET http://localhost:8000/api/v1/currency_exchange?from=USD&to=BRL&amount=100" | vegeta attack -rate=10 -duration=30s | vegeta report
