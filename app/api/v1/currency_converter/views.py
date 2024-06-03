@@ -26,7 +26,7 @@ router = APIRouter(tags=["Currency"])
     response_class=JSONResponse,
     status_code=status.HTTP_200_OK,
 )
-def get_currency_by_acronym(
+def get_currency(
     acronym: Annotated[str, Path(title="Currency Acronym to return")]
 ) -> JSONResponse:
     """
@@ -34,7 +34,7 @@ def get_currency_by_acronym(
     """
     service = CurrencyConverterService()
     try:
-        if response := service.get_currency_by_acronym(acronym):
+        if response := service.get_currency(acronym):
             return JSONResponse(content=response, status_code=status.HTTP_200_OK)
         return JSONResponse(content={}, status_code=status.HTTP_404_NOT_FOUND)
     except Exception as error:

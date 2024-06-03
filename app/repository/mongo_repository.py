@@ -63,17 +63,6 @@ class MongoRepository:
             raise MongoRepositoryTransactionsException()
         return store_cursor
 
-    def get_cached_date(self, db_name: str, collection: str) -> dict:
-        try:
-            db = self._get_database(db_name)
-            response = db[collection].find_one({"daily_time": True})
-        except Exception as error:
-            logger.error(
-                f"DB retornou erro - GetById | Erro: {error}", extra={"error": error}
-            )
-            raise MongoRepositoryTransactionsException()
-        return response
-
     def create(self, db_name: str, collection: str, data: dict):
         try:
             db = self._get_database(db_name)
